@@ -7,6 +7,7 @@
         <jta-data-source>jdbc/te1210</jta-data-source>
         <class>entities.Country</class>
         <class>entities.Vendor</class>
+        <class>entities.TruckDriver</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
