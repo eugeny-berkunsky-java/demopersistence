@@ -13,6 +13,11 @@ public class CountryDAO {
     private EntityManager em;
 
     public List<Country> findAll() {
-        return em.createQuery("select c from Country c", Country.class).getResultList();
+//        return em.createQuery("select c from Country c", Country.class).getResultList();
+        return em.createNamedQuery("Country.FindAll", Country.class).getResultList();
+    }
+
+    public Country find(int id) {
+        return em.find(Country.class, id);
     }
 }

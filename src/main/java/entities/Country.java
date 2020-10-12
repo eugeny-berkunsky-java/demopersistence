@@ -1,8 +1,12 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
+@NamedQueries({
+       @NamedQuery(name = "Country.FindAll", query = "select c from Country c")
+})
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +38,16 @@ public class Country {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
+    }
+
+    @OneToMany(mappedBy = "country")
+    private Collection<Vendor> vendors;
+
+    public Collection<Vendor> getVendors() {
+        return vendors;
+    }
+
+    public void setVendors(Collection<Vendor> vendors) {
+        this.vendors = vendors;
     }
 }

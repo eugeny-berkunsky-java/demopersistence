@@ -25,4 +25,9 @@ public class CountryBean implements Serializable {
     public List<Country> getCountries() {
         return countryDAO.findAll();
     }
+
+    public String findVendors(int id) {
+        country = countryDAO.find(id);
+        return "country.xhtml";
+    }
 }

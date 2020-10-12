@@ -802,9 +802,10 @@ true posixrules
     <database id="5" parent="1" name="tedemo">
       <ObjectId>16475</ObjectId>
       <Owner>eugeny</Owner>
-      <IntrospectionStateNumber>867</IntrospectionStateNumber>
+      <IntrospectionStateNumber>872</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16580|16582|1
+sequence|table|16591|16593|1
 </Relations>
     </database>
     <database id="6" parent="1" name="watches">
@@ -874,7 +875,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>868</IntrospectionStateNumber>
+      <IntrospectionStateNumber>873</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="21" parent="5" name="btree">
@@ -943,12 +944,23 @@ true posixrules
       <StateNumber>866</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <table id="33" parent="20" name="country">
+    <sequence id="33" parent="20" name="vendor_id_seq">
+      <ObjectId>16591</ObjectId>
+      <Owner>eugeny</Owner>
+      <StateNumber>870</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <table id="34" parent="20" name="country">
       <ObjectId>16582</ObjectId>
       <Owner>eugeny</Owner>
-      <StateNumber>866</StateNumber>
+      <StateNumber>871</StateNumber>
     </table>
-    <column id="34" parent="33" name="id">
+    <table id="35" parent="20" name="vendor">
+      <ObjectId>16593</ObjectId>
+      <Owner>eugeny</Owner>
+      <StateNumber>871</StateNumber>
+    </table>
+    <column id="36" parent="34" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -956,31 +968,75 @@ true posixrules
       <DefaultExpression>nextval(&apos;country_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="35" parent="33" name="name">
+    <column id="37" parent="34" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>866</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="36" parent="33" name="shortname">
+    <column id="38" parent="34" name="shortname">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>866</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="37" parent="33" name="country_pkey">
+    <index id="39" parent="34" name="country_pkey">
       <ObjectId>16589</ObjectId>
       <StateNumber>866</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="38" parent="33" name="country_pkey">
+    <key id="40" parent="34" name="country_pkey">
       <ObjectId>16590</ObjectId>
       <StateNumber>866</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>country_pkey</UnderlyingIndexName>
     </key>
+    <column id="41" parent="35" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>870</StateNumber>
+      <DefaultExpression>nextval(&apos;vendor_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="42" parent="35" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>870</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="43" parent="35" name="country_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>870</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="44" parent="35" name="vendor_pkey">
+      <ObjectId>16597</ObjectId>
+      <StateNumber>870</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="45" parent="35" name="vendor_pkey">
+      <ObjectId>16598</ObjectId>
+      <StateNumber>870</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>vendor_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="46" parent="35" name="fk_vendor_country_id">
+      <ObjectId>16599</ObjectId>
+      <StateNumber>871</StateNumber>
+      <ColNames>country_id</ColNames>
+      <RefTableId>16582</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>country</RefTableName>
+      <RefKeyName>country_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>
